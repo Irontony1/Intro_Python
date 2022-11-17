@@ -1,34 +1,36 @@
 import os
 from os.path import exists
-from Creating_head import creating_txt
-from Creating_head import creating_csv
-from Creating_head import creating_html
-import webbrowser
+from Creating_head import creating_head
+from style_xlsx import styling
+from openpyxl import Workbook
+# from Creating_head import creating_html
+# import webbrowser
 
-def open_txt():
+def open_xlsx():
     path = 'txt_PhoneBook.txt'
     valid = exists(path)
-    if valid != True:
-        creating_txt()
+    data_row = []
+    if valid != True: creating_head()
+    else:
+        with open (path, 'r', encoding = 'utf-8') as file:
+            for line in file:
+                data_row.append(line.strip())
+    wb = Workbook()
+    ws = wb.active    
+    for item in data_row:
+        ws.append(item.split(';'))
     
-    osCommandString = f'notepad.exe {path}'
+    wb.save('PhoneBook.xlsx')
+    styling()
+    
+    osCommandString = f'start excel.exe PhoneBook.xlsx'
     os.system(osCommandString)
 
 
-def open_csv():
-    path = 'csv_PhoneBook.csv'
-    valid = exists(path)
-    if valid != True:
-        creating_csv()
+# def open_html():
+#     path = 'html_PhoneBook.html'
+#     valid = exists(path)
+#     if valid != True:
+#         creating_html()
     
-    osCommandString = f'notepad.exe {path}'
-    os.system(osCommandString)
-
-
-def open_html():
-    path = 'html_PhoneBook.html'
-    valid = exists(path)
-    if valid != True:
-        creating_html()
-    
-    webbrowser.open_new_tab(path)
+#     webbrowser.open_new_tab(path)
