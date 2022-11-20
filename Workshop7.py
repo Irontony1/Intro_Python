@@ -6,6 +6,37 @@
 # "восемь"
 # Если перевод сделать невозможно, вернуть None. Подумайте, как и где лучше хранить информацию, необходимую для перевода: какой тип данных выбрать, в теле функции или снаружи.
 
+# def num_translate(number):
+#     dect = {
+#         'zero': 'ноль',
+#         'one': 'один',
+#         'two': 'два',
+#         'three': 'три',
+#         'four': 'четыре',
+#         'five': 'пять',
+#         'six': 'шесть',
+#         'seven': 'семь',
+#         'eight': 'восемь',
+#         'nine': 'девять',
+#         'ten': 'десять'
+#     }
+
+#     for key, item in dect.items():
+#         if number == key:
+#             return f'Перевод: {item}'
+#     else: return None
+
+# number_input = input('Введите цифру от 0 до 10 на английском: ')
+# print(num_translate(number_input))
+
+#-----------------------------------------Семинар 7 задание 2-----------------------------------------#
+# 2. * (вместо задачи 1) Доработать предыдущую функцию в num_translate_adv():
+# реализовать корректную работу с числительными, начинающимися с заглавной буквы — результат тоже должен быть с заглавной. Например:
+# num_translate_adv("One")
+# "Один"
+# num_translate_adv("two")
+# "два"
+
 def num_translate(number):
     dect = {
         'zero': 'ноль',
@@ -21,23 +52,18 @@ def num_translate(number):
         'ten': 'десять'
     }
 
+    check_reg = number.islower()
+    number1 = number.lower()
+
     for key, item in dect.items():
-        if number == key:
+        if number1 == key and check_reg == False:
+            return f'Перевод: {item.capitalize()}'
+        elif number1 == key and check_reg == True:
             return f'Перевод: {item}'
     else: return None
 
 number_input = input('Введите цифру от 0 до 10 на английском: ')
 print(num_translate(number_input))
-
-
-#-----------------------------------------Семинар 7 задание 2-----------------------------------------#
-# 2. * (вместо задачи 1) Доработать предыдущую функцию в num_translate_adv():
-# реализовать корректную работу с числительными, начинающимися с заглавной буквы — результат тоже должен быть с заглавной. Например:
-# num_translate_adv("One")
-# "Один"
-# num_translate_adv("two")
-# "два"
-
 
 
 #-----------------------------------------Семинар 7 задание 3-----------------------------------------#
