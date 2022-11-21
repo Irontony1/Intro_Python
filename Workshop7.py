@@ -37,33 +37,33 @@
 # num_translate_adv("two")
 # "два"
 
-def num_translate(number):
-    dect = {
-        'zero': 'ноль',
-        'one': 'один',
-        'two': 'два',
-        'three': 'три',
-        'four': 'четыре',
-        'five': 'пять',
-        'six': 'шесть',
-        'seven': 'семь',
-        'eight': 'восемь',
-        'nine': 'девять',
-        'ten': 'десять'
-    }
+# def num_translate(number):
+#     dect = {
+#         'zero': 'ноль',
+#         'one': 'один',
+#         'two': 'два',
+#         'three': 'три',
+#         'four': 'четыре',
+#         'five': 'пять',
+#         'six': 'шесть',
+#         'seven': 'семь',
+#         'eight': 'восемь',
+#         'nine': 'девять',
+#         'ten': 'десять'
+#     }
 
-    check_reg = number.islower()
-    number1 = number.lower()
+#     check_reg = number.islower()
+#     number1 = number.lower()
 
-    for key, item in dect.items():
-        if number1 == key and check_reg == False:
-            return f'Перевод: {item.capitalize()}'
-        elif number1 == key and check_reg == True:
-            return f'Перевод: {item}'
-    else: return None
+#     for key, item in dect.items():
+#         if number1 == key and check_reg == False:
+#             return f'Перевод: {item.capitalize()}'
+#         elif number1 == key and check_reg == True:
+#             return f'Перевод: {item}'
+#     else: return None
 
-number_input = input('Введите цифру от 0 до 10 на английском: ')
-print(num_translate(number_input))
+# number_input = input('Введите цифру от 0 до 10 на английском: ')
+# print(num_translate(number_input))
 
 
 #-----------------------------------------Семинар 7 задание 3-----------------------------------------#
@@ -73,9 +73,21 @@ print(num_translate(number_input))
 # {"И": ["Иван", "Илья"],"М": ["Мария"], "П": ["Петр"]}
 # Подумайте: полезен ли будет вам оператор распаковки? Как поступить, если потребуется сортировка по ключам? Можно ли использовать словарь в этом случае?
 
+def thesaurus(*names):
+    out_dict = {}
+    for name in names:
+        key = name[0].capitalize()
+        if key not in out_dict:
+            out_dict[key] = []
+        out_dict[key].append(name)
+    return out_dict
+
+print(thesaurus("Иван", "Мария", "Алексей", "Петр", "Илья", "Александр"))
 
 
-# 4. * (вместо задачи 3) Написать функцию thesaurus_adv(), принимающую в качестве аргументов строки в формате «Имя Фамилия» и возвращающую словарь, в котором ключи — первые буквы фамилий, а значения — словари, реализованные по схеме предыдущего задания и содержащие записи, в которых фамилия начинается с соответствующей буквы. Например:
+
+# 4. * (вместо задачи 3) Написать функцию thesaurus_adv(), принимающую в качестве аргументов строки в формате «Имя Фамилия» и возвращающую словарь, в котором ключи — первые буквы фамилий,
+# а значения — словари, реализованные по схеме предыдущего задания и содержащие записи, в которых фамилия начинается с соответствующей буквы. Например:
 # thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева")
 # {"А": {"П": ["Петр Алексеев"]},
 # "И": {"И": ["Илья Иванов"]},
