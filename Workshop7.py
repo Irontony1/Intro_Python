@@ -73,16 +73,16 @@
 # {"И": ["Иван", "Илья"],"М": ["Мария"], "П": ["Петр"]}
 # Подумайте: полезен ли будет вам оператор распаковки? Как поступить, если потребуется сортировка по ключам? Можно ли использовать словарь в этом случае?
 
-def thesaurus(*names):
-    out_dict = {}
-    for name in names:
-        key = name[0].capitalize()
-        if key not in out_dict:
-            out_dict[key] = []
-        out_dict[key].append(name)
-    return out_dict
+# def thesaurus(*names):
+#     out_dict = {}
+#     for name in names:
+#         key = name[0].capitalize()
+#         if key not in out_dict:
+#             out_dict[key] = []
+#         out_dict[key].append(name)
+#     return out_dict
 
-print(thesaurus("Иван", "Мария", "Алексей", "Петр", "Илья", "Александр"))
+# print(thesaurus("Иван", "Мария", "Алексей", "Петр", "Илья", "Александр"))
 
 
 
@@ -93,3 +93,42 @@ print(thesaurus("Иван", "Мария", "Алексей", "Петр", "Иль�
 # "И": {"И": ["Илья Иванов"]},
 # "С": {"И": ["Иван Сергеев", "Инна Серова"],"А": ["Анна Савельева"]}}
 # Как поступить, если потребуется сортировка по ключам?
+
+def thesaurus(*names):
+    out_dict = {}
+    out_dict1 = {}
+    firstname = []
+    secondname = []
+
+    for item in names:
+        firstname.append(item.split()[0])
+        secondname.append(item.split()[1])
+
+    for name in names:
+        key = name[0]
+        if key not in out_dict:
+            out_dict[key] = []
+        out_dict[key].append(name)
+    print(out_dict)
+
+    for _ , name1 in out_dict.items():
+        key1 = name1[1][:1]
+        if key1 not in out_dict1:
+            out_dict1[key1] = []
+        out_dict1[key1].append(out_dict)
+        return out_dict1
+
+sort_dict = thesaurus("Иван Васильев", "Мария Василькова", "Алексей Арбузов", "Петр Петров", "Илья Амов", "Александр Известный")
+print(sort_dict)
+
+# a = ("Иван Васильев", "Мария Василькова", "Алексей Арбузов", "Петр Петров", "Илья Амов", "Александр Известный")
+
+# name = []
+# second = []
+# for i in a:
+#     name.append(i.split()[0])
+#     second.append(i.split()[1])
+# print(name)
+# print(second)
+
+
