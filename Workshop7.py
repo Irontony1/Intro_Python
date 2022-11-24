@@ -94,41 +94,20 @@
 # "С": {"И": ["Иван Сергеев", "Инна Серова"],"А": ["Анна Савельева"]}}
 # Как поступить, если потребуется сортировка по ключам?
 
-def thesaurus(*names):
-    out_dict = {}
-    out_dict1 = {}
-    firstname = []
-    secondname = []
+def thesaurus_adv(*args):
+    dict_name = dict()
+    for name in args:
+        tmp = name.strip().split()
+        if tmp[1].capitalize()[0] in dict_name.keys():
+            if tmp[0].capitalize()[0] in dict_name[tmp[1].capitalize()[0]].keys():
+                dict_name[tmp[1].capitalize()[0]][tmp[0].capitalize()[0]].append(name)
+            else:
+                dict_name[tmp[1].capitalize()[0]][tmp[0].capitalize()[0]] = [name]
+        else:
+            dict_name[tmp[1].capitalize()[0]] = dict()
+            dict_name[tmp[1].capitalize()[0]][tmp[0].capitalize()[0]] = [name]
+    return dict_name
 
-    for item in names:
-        firstname.append(item.split()[0])
-        secondname.append(item.split()[1])
 
-    for name in names:
-        key = name[0]
-        if key not in out_dict:
-            out_dict[key] = []
-        out_dict[key].append(name)
-    print(out_dict)
-
-    for _ , name1 in out_dict.items():
-        key1 = name1[1][:1]
-        if key1 not in out_dict1:
-            out_dict1[key1] = []
-        out_dict1[key1].append(out_dict)
-        return out_dict1
-
-sort_dict = thesaurus("Иван Васильев", "Мария Василькова", "Алексей Арбузов", "Петр Петров", "Илья Амов", "Александр Известный")
+sort_dict = thesaurus_adv("Иван Васильев", "Мария Василькова", "Алексей Арбузов", "Петр Петров", "Илья Амов", "Александр Известный")
 print(sort_dict)
-
-# a = ("Иван Васильев", "Мария Василькова", "Алексей Арбузов", "Петр Петров", "Илья Амов", "Александр Известный")
-
-# name = []
-# second = []
-# for i in a:
-#     name.append(i.split()[0])
-#     second.append(i.split()[1])
-# print(name)
-# print(second)
-
-
